@@ -2,6 +2,8 @@ package com.springboot.hello.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/get-api")
 public class HelloController {
@@ -11,17 +13,17 @@ public class HelloController {
         return "Hello World";
     }
 
-    @RequestMapping(value = "/name")
+    @GetMapping(value = "/name")
     public String getName() {
         return "Munju";
     }
 
-    @RequestMapping(value = "/variable1/{variable}")
+    @GetMapping(value = "/variable1/{variable}")
     public String getVariable1(@PathVariable String variable) {
         return variable;
     }
 
-    @RequestMapping(value = "/variable2/{variable}")
+    @GetMapping(value = "/variable2/{variable}")
     public String getVariable2(@PathVariable("variable") String var) {
         return var;
     }
@@ -30,6 +32,16 @@ public class HelloController {
     public String getVariable2(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
         return name + " " + email + " " + organization;
     }
+
+    @GetMapping(value = "/request2")
+    public String getVariable2(@RequestParam Map<String, String> param) {
+        param.entrySet().forEach((map) -> {
+            System.out.printf("key: %s value: %s\n", map.getKey(), map.getValue());
+        });
+        return "request2가 호출 완료되었습니다";
+    }
+
+
 
 
 }
