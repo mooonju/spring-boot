@@ -30,16 +30,17 @@ public class GetController {
     }
 
     @GetMapping(value = "/request1")
-    public String getVariable2(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
+    public String getRequestParam1(@RequestParam String name, @RequestParam String email, @RequestParam String organization) {
         return name + " " + email + " " + organization;
     }
 
     @GetMapping(value = "/request2")
-    public String getVariable2(@RequestParam Map<String, String> param) {
+    public String getRequestParam2(@RequestParam Map<String, String> param) {
+        StringBuilder sb = new StringBuilder()
         param.entrySet().forEach((map) -> {
-            System.out.printf("key: %s value: %s\n", map.getKey(), map.getValue());
+            sb.append(map.getKey() + " : " + map.getValue() + "\n");
         });
-        return "request2가 호출 완료되었습니다";
+        return sb.toString();
     }
 
     @GetMapping(value = "/request3")
