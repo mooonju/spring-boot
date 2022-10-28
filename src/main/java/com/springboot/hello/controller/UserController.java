@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public String hello() {
-        return "Hello World";
+    public void save(@RequestBody User user){
+        userDao.add(user);
     }
 
     @DeleteMapping("/user/{id}")
